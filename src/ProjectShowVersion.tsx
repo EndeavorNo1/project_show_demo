@@ -1,21 +1,4 @@
-import "./styles.scss";
-
-const TAGS = [
-  "V6.0.1",
-  "V6.0.2",
-  "V6.0.3",
-  "V6.0.4",
-  "V6.0.5",
-  "V6.0.6",
-  "V6.0.7",
-  "V6.0.8",
-  "V6.0.9",
-  "V6.0.10",
-  "V6.0.11",
-  "V6.0.12"
-];
-const ROWS = 5;
-const TAGS_PER_ROW = 5;
+import "./styles.less";
 
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 const shuffle = (arr) => [...arr].sort(() => 0.5 - Math.random());
@@ -43,17 +26,17 @@ const Tag = ({ text, color }) => (
   </div>
 );
 
-const App = () => (
+const ProjectShowVersion = ({ tags, rows, tagsPreRow }) => (
   <div className="app">
     <div className="tag-list">
-      {[...new Array(ROWS)].map((_, i) => (
+      {[...new Array(rows)].map((_, i) => (
         <InfiniteLoopSlider
           key={i}
           duration={random(33333, 88888)}
           reverse={i % 2}
         >
-          {shuffle(TAGS)
-            .slice(0, TAGS_PER_ROW)
+          {shuffle(tags)
+            .slice(0, tagsPreRow)
             .map((tag) => (
               <Tag text={tag} key={tag} />
             ))}
@@ -64,4 +47,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default ProjectShowVersion;
